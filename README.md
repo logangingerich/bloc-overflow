@@ -16,16 +16,6 @@ rake db:seed
 rake start
 ```
 
-Once you're ready to deploy to [Heroku](https://surge.sh), run:
-
-``` shell
-heroku apps:create
-heroku buildpacks:add heroku/nodejs --index 1
-heroku buildpacks:add heroku/ruby --index 2
-git push heroku master
-heroku run rake db:migrate
-heroku run rake db:seed
-heroku open
-```
+Building on CI Heroku: http://bloc-overflow.herokuapp.com/
 
 Success!
