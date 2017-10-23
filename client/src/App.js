@@ -5,12 +5,39 @@ class App extends Component {
   constructor () {
     super()
     this.state = {}
-    this.getDrinks = this.getDrinks.bind(this)
-    this.getDrink = this.getDrink.bind(this)
+    this.getData = this.getData.bind(this)
+  }
+  componentDidMount () {
+    // this.getData()
+  }
+
+  fetch (endpoint) {
+    return new Promise((resolve, reject) => {
+      window.fetch(endpoint)
+      .then(response => response.json())
+      .then(json => resolve(json))
+      .catch(error => reject(error))
+    })
+  }
+
+  getData () {
+    this.fetch('api/')
+      .then(data => {
+        this.setState({data: data})
+      })
   }
 
   render () {
-    return `<div>This is the begining, the rest is up to you...`
+    let data = this.state;
+    return data
+    ? <Container text>
+        This is the Begining
+    </Container>
+    : <Container text>
+      <Dimmer active inverted>
+        <Loader content='Loading' />
+      </Dimmer>
+    </Container>
   }
 }
 
