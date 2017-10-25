@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
+import HomePage from './HomePage'
+import OtherPage from './OtherPage'
 import { Container, Header, Segment, Button, Icon, Dimmer, Loader, Divider } from 'semantic-ui-react'
 
 class App extends Component {
@@ -30,9 +33,14 @@ class App extends Component {
   render () {
     let data = this.state;
     return data
-    ? <Container text>
-        This is the Begining
-    </Container>
+    ? <Container className="app">
+        <Route exact path='/' render={() => (
+          <HomePage />
+        )}/>
+        <Route path='/other' render={() => (
+          <OtherPage />
+        )}/>
+      </Container>
     : <Container text>
       <Dimmer active inverted>
         <Loader content='Loading' />
