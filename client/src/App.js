@@ -1,16 +1,19 @@
 import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
+import HomePage from './HomePage'
+import OtherPage from './OtherPage'
 import { Container, Header, Segment, Button, Icon, Dimmer, Loader, Divider } from 'semantic-ui-react'
 
 class App extends Component {
   constructor () {
     super()
     this.state = {}
-    this.getDrinks = this.getDrinks.bind(this)
-    this.getDrink = this.getDrink.bind(this)
+    this.getData = this.getData.bind(this)
   }
   componentDidMount () {
-    this.getDrinks()
+    // this.getData()
   }
+
   fetch (endpoint) {
     return new Promise((resolve, reject) => {
       window.fetch(endpoint)
@@ -19,48 +22,25 @@ class App extends Component {
       .catch(error => reject(error))
     })
   }
-  getDrinks () {
-    this.fetch('api/drinks')
-      .then(drinks => {
-        this.setState({drinks: drinks})
-        drinks[0] && this.getDrink(drinks[0].id)
+
+  getData () {
+    this.fetch('api/')
+      .then(data => {
+        this.setState({data: data})
       })
   }
-  getDrink (id) {
-    this.fetch(`api/drinks/${id}`)
-      .then(drink => this.setState({drink: drink}))
-  }
+
   render () {
-    let {drinks, drink} = this.state
-    return drinks
-    ? <Container text>
-        <Header as='h2' icon textAlign='center'>
-        <Icon name='cocktail' circular />
-        <Header.Content>
-          List of Ingredients
-        </Header.Content>
-      </Header>
-      <Button.Group fluid widths={drinks.length}>
-        {Object.keys(drinks).map((key) => {
-          return <Button active={drink && drink.id === drinks[key].id} fluid key={key} onClick={() => this.getDrink(drinks[key].id)}>
-            {drinks[key].title}
-          </Button>
-        })}
-      </Button.Group>
-      <Divider hidden />
-      {drink &&
-        <Container>
-          <Header as='h2'>{drink.title}</Header>
-          {drink.description && <p>{drink.description}</p>}
-          {drink.ingredients &&
-            <Segment.Group>
-              {drink.ingredients.map((ingredient, i) => <Segment key={i}>{ingredient.description}</Segment>)}
-            </Segment.Group>
-          }
-          {drink.steps && <p>{drink.steps}</p>}
-        </Container>
-      }
-    </Container>
+    let data = this.state;
+    return data
+    ? <Container className="app">
+        <Route exact path='/' render={() => (
+          <HomePage />
+        )}/>
+        <Route path='/other' render={() => (
+          <OtherPage />
+        )}/>
+      </Container>
     : <Container text>
       <Dimmer active inverted>
         <Loader content='Loading' />

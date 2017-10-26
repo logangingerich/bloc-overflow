@@ -1,10 +1,6 @@
-![List of Ingredients](https://i.imgur.com/30bgJWe.png)
+# Bloc Overflow
 
-# List of Ingredients
-
-This repo serves as a companion to the tutorial [Rails 5 API + ActiveAdmin + create-react-app on Heroku, over on Medium](https://medium.com/superhighfives/rails-5-api-activeadmin-create-react-app-on-heroku-de5481b7ec0b), and the end result should look something like this:
-
-![An example of the List of Ingredients app](http://i.imgur.com/as3HMYP.png)
+An app for students and mentors to ask and answer questions.
 
 ## Getting started
 
@@ -20,20 +16,6 @@ rake db:seed
 rake start
 ```
 
-Once you're ready to deploy to [Heroku](https://surge.sh), run:
-
-``` shell
-heroku apps:create
-heroku buildpacks:add heroku/nodejs --index 1
-heroku buildpacks:add heroku/ruby --index 2
-git push heroku master
-heroku run rake db:migrate
-heroku run rake db:seed
-heroku open
-```
+Building on CI Heroku: http://bloc-overflow.herokuapp.com/
 
 Success!
-
-## Suggestions, problems, typos?
-
-Let me know in the [issues](https://github.com/superhighfives/list-of-ingredients/issues).
