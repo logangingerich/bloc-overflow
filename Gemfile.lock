@@ -90,6 +90,9 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
+    devise_token_auth (0.1.42)
+      devise (> 3.5.2, <= 4.3)
+      rails (< 6)
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.17)
@@ -219,6 +222,7 @@ DEPENDENCIES
   activeadmin!
   byebug
   devise (> 4.x)
+  devise_token_auth
   foreman (~> 0.82.0)
   inherited_resources!
   listen (~> 3.0.5)
@@ -231,4 +235,4 @@ DEPENDENCIES
   tzinfo-data
 
 BUNDLED WITH
-   1.14.5
+   1.15.4
