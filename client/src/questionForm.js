@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import OtherPage from './OtherPage'
-import question from './questionForm'
+import HomePage from './HomePage'
 import { Container, Header, Segment, Button, Icon, Dimmer, Loader, Divider } from 'semantic-ui-react'
 
-class HomePage extends Component {
+class Home extends Component {
   render() {
     return (
       <Container>
@@ -22,4 +21,19 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage
+// class questionForm extends Component {
+//   render() {
+//     return (
+//       <div>This is a question page
+//       </div>
+//
+//       <Container>
+//         <Container text>
+//             This is the question Page
+//         </Container>
+//       </Container>
+//     )
+//   }
+// }
+
+export default Home
