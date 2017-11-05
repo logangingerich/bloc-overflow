@@ -2,16 +2,30 @@ import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import HomePage from './HomePage'
 import OtherPage from './OtherPage'
+import Auth from 'j-toker';
+import PubSub from 'pubsub-js';
+import LoginForm from './LoginForm';
+import RegistrationForm from './RegistrationForm';
 import { Container, Header, Segment, Button, Icon, Dimmer, Loader, Divider } from 'semantic-ui-react'
+
+Auth.configure({
+  apiUrl: 'http://localhost:3000/api',
+  storage: 'localStorage',
+  confirmationSuccessUrl: '/',
+  handleLoginResponse: (resp) => {
+    console.log(resp)
+    return resp.data;
+  }
+});
 
 class App extends Component {
   constructor () {
     super()
-    this.state = {}
-    this.getData = this.getData.bind(this)
-  }
-  componentDidMount () {
-    // this.getData()
+    this.state = {
+      user: Auth.user
+    }
+    this.getData = this.getData.bind(this);
+    this.componentWillMount = this.componentWillMount.bind(this);
   }
 
   fetch (endpoint) {
@@ -28,6 +42,12 @@ class App extends Component {
       .then(data => {
         this.setState({data: data})
       })
+  }
+
+  componentWillMount() {
+    PubSub.subscribe('auth', function() {
+      this.setState({user: Auth.user});
+    }.bind(this));
   }
 
   render () {
