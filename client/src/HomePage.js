@@ -15,7 +15,7 @@ class HomePage extends Component {
             <Link to='/other'>Click here for Other page</Link>
         </Container>
         <Container text>
-          <Link to='/question/create'>Create a question now</Link>
+          <Link to='/question/create'>Create a question</Link>
         </Container>
       </Container>
     )
