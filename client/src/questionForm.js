@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Container, Header, Segment, Button, Icon, Dimmer, Loader, Divider } from 'semantic-ui-react'
 
@@ -13,9 +14,17 @@ class QuestionForm extends Component {
 
     handleClick() {
       console.log("button clicked");
-      this.setState(prevState => ({
-        isToggleOn: !prevState.isToggleOn
-      }));
+
+      axios.post('/api/question', {
+          title: 'Fred',
+          description: 'Flintstone'
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
 
   render() {
