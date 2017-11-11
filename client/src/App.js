@@ -8,11 +8,14 @@ import { Container, Header, Segment, Button, Icon, Dimmer, Loader, Divider } fro
 class App extends Component {
   constructor () {
     super()
-    this.state = {}
+    this.state = {
+      questions: []
+    }
     this.getData = this.getData.bind(this)
+    this.getQuestions = this.getQuestions.bind(this)
   }
   componentDidMount () {
-    // this.getData()
+    this.getQuestions()
   }
 
   fetch (endpoint) {
@@ -31,12 +34,21 @@ class App extends Component {
       })
   }
 
+  getQuestions () {
+    this.fetch('/api/questions')
+      .then(questions => {
+        this.setState({questions: questions})
+      })
+  }
+
   render () {
-    let data = this.state;
+    let data = this.state
     return data
     ? <Container className="app">
         <Route exact path='/' render={() => (
-          <HomePage />
+          <HomePage
+            questions = { this.state.questions }
+          />
         )}/>
         <Route path='/other' render={() => (
           <OtherPage />
