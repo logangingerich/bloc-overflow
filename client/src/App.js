@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import HomePage from './HomePage'
 import OtherPage from './OtherPage'
-import Home from './questionForm'
+import QuestionForm from './questionForm'
 import { Container, Header, Segment, Button, Icon, Dimmer, Loader, Divider } from 'semantic-ui-react'
 
 class App extends Component {
@@ -42,7 +42,7 @@ class App extends Component {
           <OtherPage />
         )}/>
         <Route path='/question/create' render={() => (
-          <Home />
+          <QuestionForm />
         )}/>
       </Container>
     : <Container text>
