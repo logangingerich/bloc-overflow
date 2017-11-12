@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Link, Route, Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { Container, Header, Segment, Button, Icon, Dimmer, Loader, Divider } from 'semantic-ui-react'
 
 class QuestionForm extends Component {
@@ -21,8 +21,8 @@ class QuestionForm extends Component {
         .then(function (response) {
           console.log("questions created")
           console.log(response);
-          // history.push('/');
-          <Redirect to="/" />
+          //<Redirect from="/question/create" to="/" />;
+          window.location.href="/";
         })
         .catch(function (error) {
           console.log(error);
