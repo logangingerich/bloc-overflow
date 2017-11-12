@@ -10,5 +10,6 @@ class QuestionsController < ApiController
     @question.description = params[:description]
 
     @question.save
+    render json: @question
   end
 end

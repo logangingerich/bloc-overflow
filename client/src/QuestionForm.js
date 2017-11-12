@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, Route, Redirect } from 'react-router-dom'
 import { Container, Header, Segment, Button, Icon, Dimmer, Loader, Divider } from 'semantic-ui-react'
 
 class QuestionForm extends Component {
   constructor(props) {
       super(props);
-      this.state = {isToggleOn: true};
 
       // This binding is necessary to make `this` work in the callback
       this.handleClick = this.handleClick.bind(this);
@@ -16,13 +15,14 @@ class QuestionForm extends Component {
       console.log("button clicked");
 
       axios.post('/api/questions', {
-          title: 'Fred',
-          description: 'Flintstone'
+          title: document.getElementById("title").value,
+          description: document.getElementById("description").value
         })
         .then(function (response) {
           console.log("questions created")
           console.log(response);
-          this.props.history.push('/');
+          // history.push('/');
+          <Redirect to="/" />
         })
         .catch(function (error) {
           console.log(error);
@@ -33,13 +33,14 @@ class QuestionForm extends Component {
     return (
       <Container>
         <Container text>
-          This is the question Page
+          this is the question page
         </Container>
         <Container text>
           What is your question?
         </Container>
         <div class="ui input">
-          <input type="text" placeholder="Enter question" />
+          <input id="title" type="text" placeholder="Enter question" />
+          <input id="description" type="text" placeholder="Enter details about your question" />
           <Button onClick={this.handleClick} class="ui button">Submit</Button>
         </div>
       </Container>
