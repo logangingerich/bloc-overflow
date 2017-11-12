@@ -6,7 +6,9 @@ class QuestionsController < ApiController
 
   def create
     @question = Question.new
-    @question.title = params[:question][:title]
-    @question.body = params[:question][:body]
+    @question.title = params[:title]
+    @question.description = params[:description]
+
+    @question.save
   end
 end

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import OtherPage from './OtherPage'
-import question from './questionForm'
+import QuestionForm from './QuestionForm'
 import { Container, Header, Segment, Button, Icon, Dimmer, Loader, Divider } from 'semantic-ui-react'
 
 class HomePage extends Component {

@@ -15,12 +15,14 @@ class QuestionForm extends Component {
     handleClick() {
       console.log("button clicked");
 
-      axios.post('/api/question', {
+      axios.post('/api/questions', {
           title: 'Fred',
           description: 'Flintstone'
         })
         .then(function (response) {
+          console.log("questions created")
           console.log(response);
+          this.props.history.push('/');
         })
         .catch(function (error) {
           console.log(error);
@@ -38,7 +40,7 @@ class QuestionForm extends Component {
         </Container>
         <div class="ui input">
           <input type="text" placeholder="Enter question" />
-          <Button onClick ={this.handleClick} class="ui button">Submit</Button>
+          <Button onClick={this.handleClick} class="ui button">Submit</Button>
         </div>
       </Container>
     )
