@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Link, withRouter, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { Container, Header, Segment, Button, Icon, Dimmer, Loader, Divider } from 'semantic-ui-react'
 
 class QuestionForm extends Component {
@@ -9,29 +9,30 @@ class QuestionForm extends Component {
   constructor(props) {
       super(props);
 
-      this.state = {
-        redirect: false
-      }
-
+      this.state = { redirect: false }
 
       // This binding is necessary to make `this` work in the callback
       this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick() {
-      console.log("button clicked");
-      console.log(this.state.redirect);
+      var title = document.getElementById("title").value;
+      var description = document.getElementById("description").value;
+      if (!title) {
+        alert("please enter a question");
+        return;
+      }
 
       axios.post('/api/questions', {
-          title: document.getElementById("title").value,
-          description: document.getElementById("description").value
-        })
-        .then(() => this.setState({ redirect: true }),
-        window.alert("question saved")
+        title: title,
+        description: description
+      })
+      .then(() => this.setState({ redirect: true }),
+        alert("question saved")
       )
-        .catch(function (error) {
-          console.log(error);
-        });
+      .catch(function (error) {
+        console.log(error);
+      });
     }
 
   render() {
@@ -42,10 +43,7 @@ class QuestionForm extends Component {
     }
 
     return (
-        <Container>
-        <Container text>
-          this is the question page
-        </Container>
+      <Container>
         <Container text>
           What is your question?
         </Container>
@@ -57,14 +55,10 @@ class QuestionForm extends Component {
           <input id="description" type="text" placeholder="Enter details" />
           <br />
         </div>
-        <Button class="ui green button" onClick={this.handleClick}>Submit</Button>
+        <Button class="ui green button" onClick={ this.handleClick }>Submit</Button>
       </Container>
     )
   }
 }
-
-// On submit of form create the question
-// redirect to the home
-// Create method POST /api/question
 
 export default QuestionForm
