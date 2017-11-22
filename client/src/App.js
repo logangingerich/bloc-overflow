@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
-import HomePage from './HomePage'
-import OtherPage from './OtherPage'
-import QuestionForm from './QuestionForm'
+import HomePage from './components/HomePage'
+import OtherPage from './components/OtherPage'
+import QuestionForm from './components/QuestionForm'
 import LoginForm from './components/LoginForm'
 import { Container, Header, Segment, Button, Icon, Dimmer, Loader, Divider } from 'semantic-ui-react'
 
