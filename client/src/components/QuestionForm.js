@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
-import {Container, Header, Segment, Button, Icon, Dimmer, Loader, Divider} from 'semantic-ui-react';
+import {Container, Button} from 'semantic-ui-react';
 
 class QuestionForm extends Component {
   constructor(props) {
