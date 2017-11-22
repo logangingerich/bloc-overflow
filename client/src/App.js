@@ -3,7 +3,6 @@ import { Route } from 'react-router-dom'
 import HomePage from './components/HomePage'
 import OtherPage from './components/OtherPage'
 import QuestionForm from './components/QuestionForm'
-import LoginForm from './components/LoginForm'
 import { Container, Header, Segment, Button, Icon, Dimmer, Loader, Divider } from 'semantic-ui-react'
 
 class App extends Component {
@@ -46,7 +45,6 @@ class App extends Component {
     let data = this.state
     return data
     ? <Container className="app">
-        <LoginForm />
         <Route exact path='/' render={() => (
           <HomePage
             questions = { this.state.questions }
