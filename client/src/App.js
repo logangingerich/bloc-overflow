@@ -1,68 +1,58 @@
-import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
-import HomePage from './components/HomePage'
-import OtherPage from './components/OtherPage'
-import QuestionForm from './components/QuestionForm'
-import { Container, Header, Segment, Button, Icon, Dimmer, Loader, Divider } from 'semantic-ui-react'
+import React, {Component} from 'react';
+import {Route} from 'react-router-dom';
+import HomePage from './components/HomePage';
+import QuestionForm from './components/QuestionForm';
+import {Container, Dimmer, Loader} from 'semantic-ui-react';
 
 class App extends Component {
-  constructor () {
-    super()
+  constructor() {
+    super();
     this.state = {
-      questions: []
-    }
-    this.getData = this.getData.bind(this)
-    this.getQuestions = this.getQuestions.bind(this)
-  }
-  componentDidMount () {
-    this.getQuestions()
+      questions: [],
+    };
+
+    this.getQuestions = this.getQuestions.bind(this);
   }
 
-  fetch (endpoint) {
+  componentDidMount() {
+    this.getQuestions();
+  }
+
+  fetch(endpoint) {
     return new Promise((resolve, reject) => {
-      window.fetch(endpoint)
-      .then(response => response.json())
-      .then(json => resolve(json))
-      .catch(error => reject(error))
-    })
+      window
+        .fetch(endpoint)
+        .then(response => response.json())
+        .then(json => resolve(json))
+        .catch(error => reject(error));
+    });
   }
 
-  getData () {
-    this.fetch('api/')
-      .then(data => {
-        this.setState({data: data})
-      })
+  getQuestions() {
+    this.fetch('/api/questions').then(questions => {
+      this.setState({questions: questions});
+    });
   }
 
-  getQuestions () {
-    this.fetch('/api/questions')
-      .then(questions => {
-        this.setState({questions: questions})
-      })
-  }
-
-  render () {
-    let data = this.state
-    return data
-    ? <Container className="app">
-        <Route exact path='/' render={() => (
-          <HomePage
-            questions = { this.state.questions }
-          />
-        )}/>
-        <Route path='/other' render={() => (
-          <OtherPage />
-        )}/>
-        <Route path='/question/create' render={() => (
-          <QuestionForm />
-        )}/>
+  render() {
+    let data = this.state;
+    const routes = (
+      <Container className="app">
+        <Route exact path="/" render={() => <HomePage questions={this.state.questions} />} />
+        <Route path="/question/create" render={() => <QuestionForm />} />
       </Container>
-    : <Container text>
-      <Dimmer active inverted>
-        <Loader content='Loading' />
-      </Dimmer>
-    </Container>
+    )
+
+    const loader = (
+      <Container text>
+        <Dimmer active inverted>
+          <Loader content="Loading" />
+        </Dimmer>
+      </Container>
+    )
+
+    return data ? routes : loader;
   }
 }
 
-export default App
+export default App;
