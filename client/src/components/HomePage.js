@@ -8,14 +8,14 @@ class HomePage extends Component {
     const {questions} = this.props;
     return (
       <Container>
-        <Container text>This is the Home Page</Container>
+        <h1 className="ui header">Bloc Overflow</h1>
         <Container text>
           <Link to="/question/create">Create a question</Link>
         </Container>
         <Container>
           {questions.map(question => (
             <p>
-              <h3>{question.title}</h3>
+              <h3 className="ui header">{question.title}</h3>
               <span>{question.description}</span>
             </p>
           ))}
