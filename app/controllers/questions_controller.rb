@@ -3,4 +3,13 @@ class QuestionsController < ApiController
     @questions = Question.all
     render json: @questions
   end
+
+  def create
+    @question = Question.new
+    @question.title = params[:title]
+    @question.description = params[:description]
+
+    @question.save
+    render json: @question
+  end
 end
