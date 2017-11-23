@@ -11,10 +11,10 @@ class QuestionForm extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  fetch(endpoint) {
+  post(endpoint, data) {
     return new Promise((resolve, reject) => {
       window
-        .fetch(endpoint)
+        .fetch(endpoint, data)
         .then(response => response.json())
         .then(json => resolve(json))
         .catch(error => reject(error));
@@ -29,11 +29,12 @@ class QuestionForm extends Component {
       return;
     }
 
-    this.fetch('/api/questions', {
+    this.post('/api/questions', {
       method: 'POST',
-      body: {title, description},
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({title, description}),
     })
-      .then(() => this.setState({redirect: true}), alert('question saved'))
+      .then(() => this.setState({redirect: true}))
       .catch(function(error) {
         console.log(error);
       });
