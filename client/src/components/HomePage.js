@@ -38,7 +38,7 @@ getQuestions() {
         <div className="header">
           <img src={blocLogo} alt="Bloc"/>
           <h1 className="overflow">&nbsp; Overflow</h1>
-          <button className="ui primary button create" to="/question/create">Create a question</button>
+          <Link className="ui primary button create" to="/question/create"> Create a question </Link>
         </div>
         <div className="question">
           {this.state.questions.map(question => (

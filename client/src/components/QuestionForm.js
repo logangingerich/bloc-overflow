@@ -48,8 +48,8 @@ class QuestionForm extends Component {
     }
 
     return (
-      <Container>
-        <h1 className="ui header">What is your question?</h1>
+      <div className="inputContainer">
+        <h1 className="header" id="questionFormHeader">What is your question?</h1>
         <div className="ui input">
           <input id="title" type="text" placeholder="Enter question" />
           <br />
@@ -63,7 +63,7 @@ class QuestionForm extends Component {
             Submit
           </Button>
         </div>
-      </Container>
+      </div>
     );
   }
 }

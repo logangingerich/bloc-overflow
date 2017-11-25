@@ -39,3 +39,18 @@ body {
 .description {
   padding: 5px 5px 5px 5px;
 }
+
+#questionFormHeader {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.inputContainer {
+  text-align: center;
+  background-color: #1E8CC5;
+  padding-bottom: 10px;
+}
+
+.ui.input {
+  margin-bottom: 10px;
+}
