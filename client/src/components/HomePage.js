@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import {Container} from 'semantic-ui-react';
+import {Container, Button} from 'semantic-ui-react';
+import blocLogo from '../assets/bloc_logo.png';
 
 class HomePage extends Component {
   constructor(props) {
@@ -33,20 +34,22 @@ getQuestions() {
 }
   render() {
     return (
-      <Container>
-        <h1 className="ui header">Bloc Overflow</h1>
-        <Container text>
-          <Link to="/question/create">Create a question</Link>
-        </Container>
-        <Container>
+      <div>
+        <div className="header">
+          <img src={blocLogo} alt="Bloc"/>
+          <h1 className="overflow">&nbsp; Overflow</h1>
+          <button className="ui primary button create" to="/question/create">Create a question</button>
+        </div>
+        <div className="question">
           {this.state.questions.map(question => (
             <p>
-              <h3 className="ui header">{question.title}</h3>
-              <span>{question.description}</span>
+              <h2 className="title">{question.title}</h2><br></br>
+              <span className="description">{question.description}</span>
+              <hr></hr>
             </p>
           ))}
-        </Container>
-      </Container>
+        </div>
+      </div>
     );
   }
 }

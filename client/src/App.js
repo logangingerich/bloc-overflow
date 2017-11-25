@@ -12,10 +12,10 @@ class App extends Component {
 
   render() {
     const routes = (
-      <Container className="app">
+      <div>
         <Route exact path="/" render={() => <HomePage />} />
         <Route path="/question/create" render={() => <QuestionForm />} />
-      </Container>
+      </div>
     )
 
     const loader = (
