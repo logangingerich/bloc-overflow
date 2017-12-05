@@ -27,8 +27,14 @@ body {
 .question {
   text-align: center;
   clear: both;
+  background-color: #f2f2f2;
+  color: #333333;
+}
+
+hr {
   background-color: #1E8CC5;
-  color: white;
+  color: #1E8CC5;
+  height: 5px;
 }
 
 .title {
